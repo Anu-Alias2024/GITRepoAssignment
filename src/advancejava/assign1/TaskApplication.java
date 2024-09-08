@@ -12,13 +12,22 @@ public class TaskApplication {
 			scanner = new Scanner(System.in);
 
 			Task[] taskList = addTask(scanner);
+			display(taskList);
 			System.out.println("Remove Task ");
 			Task[] updatedList = removeTask(scanner, taskList);
+			display(updatedList);
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			scanner.close();
+		}
+	}
+
+//Show the details of Task
+	private static void display(Task[] list) {
+		for (Task task : list) {
+			System.out.println(task.toString());
 		}
 	}
 
