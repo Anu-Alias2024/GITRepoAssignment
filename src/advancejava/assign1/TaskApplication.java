@@ -10,7 +10,6 @@ public class TaskApplication {
 		Scanner scanner = null;
 		try {
 			scanner = new Scanner(System.in);
-
 			Task[] taskList = addTask(scanner);
 			display(taskList);
 			System.out.println("Remove Task ");
@@ -19,10 +18,14 @@ public class TaskApplication {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+
+			addTask(scanner);
+
 		} finally {
 			scanner.close();
 		}
 	}
+
 
 //Show the details of Task
 	private static void display(Task[] list) {
@@ -54,18 +57,22 @@ public class TaskApplication {
 		int n = scanner.nextInt();
 		Task[] taskList = new Task[n];
 		System.out.println("Add task Details");
+
 		for (int i = 0; i < n; i++) {
 
 			System.out.println("Enter the Description");
 			String taskDescription = scanner.next();
+
 			System.out.println("Enter the Due Date in dd-MM-yyyy format");
 			String userInput = scanner.next();
 			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
 			LocalDate date = LocalDate.parse(userInput, dateFormat);
 			Task task = new Task(taskDescription, date);
 
 			taskList[i] = task;
 		}
+
 
 		return taskList;
 	}
